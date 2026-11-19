@@ -34,7 +34,17 @@ The trained model is integrated into a Flask-based web application that provides
 
 ## Application Preview
 
-Application screenshots will be added here.
+### 1. Homepage
+![FORENSIX AI Homepage](screenshots/homepage.png)
+
+### 2. Image Detection Result
+![Image Detection Result](screenshots/detection-result.png)
+
+### 3. Dashboard
+![FORENSIX AI Dashboard](screenshots/dashboard.png)
+
+### 4. Generated Forensic Report
+![Generated Forensic Report](screenshots/forensic-report.png)
 
 ## Live Demonstration
 
