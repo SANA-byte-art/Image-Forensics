@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Forensic Report{% endblock %}
+
+{% block content %}
+
+<h1>Digital Forensic Report</h1>
+
+<div class="report-container">
+
+    <!-- LEFT: Image Preview -->
+    <div class="report-image">
+        <img src="{{ url_for('static', filename='uploads/' + case.image) }}" 
+             alt="Evidence Image">
+    </div>
+
+    <!-- RIGHT: Case Details -->
+    <div class="report-details">
+
+        <h3>Case ID: {{ case.case_id }}</h3>
+
+        <div class="report-row">
+            <strong>Classification:</strong>
+            <span>{{ case.result }}</span>
+        </div>
+
+        <div class="report-row">
+            <strong>Confidence:</strong>
+            <span>{{ case.confidence }}</span>
+        </div>
+
+        <div class="report-row">
+            <strong>Timestamp:</strong>
+            <span>{{ case.timestamp }}</span>
+        </div>
+
+    </div>
+
+</div>
+
+<br>
+
+<!-- ================= BUTTON SECTION ================= -->
+
+<div style="display:flex; gap:15px;">
+
+    <!-- Print Button -->
+    <button onclick="window.print()" class="btn print-btn">
+        Print Report
+    </button>
+
+    <!-- Professional PDF Download -->
+    <a href="/download_report/{{ case.case_id }}" class="btn download-btn">
+        Download Official PDF
+    </a>
+
+</div>
+
+{% endblock %}

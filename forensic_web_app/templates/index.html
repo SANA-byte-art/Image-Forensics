@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FORENSIX AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #3a0ca3);
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 40px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            color: #ccc;
+            margin-left: 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #00ccff;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: #00ccff;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .features {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 40px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.08);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #ccc;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">🛡 FORENSIX</div>
+    <div>
+        <a href="/">Home</a>
+        <a href="/dashboard">Image Detection</a>
+        <a href="/about">About</a>
+        <a href="/login">Login</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>AI-Powered Image Forensics Detection</h1>
+    <p>Detect AI-generated, manipulated, and authentic images instantly</p>
+    <a href="/dashboard" class="btn">Start Detection</a>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <h2>Key Features</h2>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <h3>🧠 AI-Powered Detection</h3>
+            <p>Deep learning models analyze images to detect AI-generated and manipulated content.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>⚡ Real-Time Analysis</h3>
+            <p>Get instant predictions with confidence scores and detailed insights.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>🔒 Secure Processing</h3>
+            <p>Your uploaded images are processed securely and not stored permanently.</p>
+        </div>
+
+        <div class="feature-card">
+            <h3>📊 High Accuracy</h3>
+            <p>Optimized CNN models provide reliable and consistent detection results.</p>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

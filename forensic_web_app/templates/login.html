@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Login - FORENSIX</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{box-sizing:border-box;}
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:linear-gradient(135deg,#140026,#4b0082,#1a0033);
+background-size:400% 400%;
+animation:bgmove 12s infinite alternate;
+min-height:100vh;
+}
+
+@keyframes bgmove{
+0%{background-position:left}
+100%{background-position:right}
+}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+padding:18px 40px;
+background:#0c0019;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+color:white;
+letter-spacing:2px;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 5px #a855ff}
+to{text-shadow:0 0 20px #d946ef}
+}
+
+.nav-links a{
+color:#caa6ff;
+margin-left:20px;
+text-decoration:none;
+}
+
+.login-container{
+display:flex;
+justify-content:center;
+align-items:center;
+height:85vh;
+}
+
+.login-card{
+width:420px;
+padding:45px;
+border-radius:20px;
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(15px);
+box-shadow:0 0 35px rgba(0,0,0,0.6);
+text-align:center;
+}
+
+.brand{
+margin-bottom:20px;
+}
+
+.brand i{
+font-size:32px;
+color:#c084fc;
+margin-bottom:8px;
+}
+
+.brand-title{
+font-size:26px;
+font-weight:bold;
+background:linear-gradient(90deg,#c084fc,#22d3ee);
+-webkit-background-clip:text;
+color:transparent;
+animation:neon 2s infinite alternate;
+}
+
+@keyframes neon{
+from{text-shadow:0 0 6px #9333ea}
+to{text-shadow:0 0 18px #22d3ee}
+}
+
+.subtitle{
+font-size:13px;
+color:#ccc;
+margin-top:3px;
+}
+
+.input-group{
+position:relative;
+margin-bottom:18px;
+}
+
+.input-group i.icon{
+position:absolute;
+left:14px;
+top:50%;
+transform:translateY(-50%);
+color:#bbb;
+}
+
+.input-group input{
+width:100%;
+padding:12px 42px;
+border-radius:10px;
+border:none;
+background:rgba(255,255,255,0.12);
+color:white;
+}
+
+.toggle-password{
+position:absolute;
+right:14px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+color:#ccc;
+}
+
+.login-btn{
+width:100%;
+padding:13px;
+border:none;
+border-radius:10px;
+background:linear-gradient(to right,#9333ea,#4f46e5);
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.login-btn:hover{
+transform:scale(1.03);
+box-shadow:0 0 12px #8a2be2;
+}
+
+.bottom-text{
+margin-top:18px;
+color:white;
+}
+
+.bottom-text a{
+color:#6cffda;
+text-decoration:none;
+}
+
+</style>
+
+<script>
+
+function togglePassword(){
+const password=document.getElementById("password");
+const icon=document.getElementById("eyeicon");
+
+if(password.type==="password"){
+password.type="text";
+icon.classList.replace("fa-eye","fa-eye-slash");
+}else{
+password.type="password";
+icon.classList.replace("fa-eye-slash","fa-eye");
+}
+}
+
+</script>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="logo">FORENSIX</div>
+
+<div class="nav-links">
+<a href="/">Home</a>
+<a href="/detect">Image Detection</a>
+<a href="/about">About</a>
+<a href="/login">Login</a>
+<a href="/register">Register</a>
+</div>
+</nav>
+
+<div class="login-container">
+
+<div class="login-card">
+
+<div class="brand">
+<i class="fa-solid fa-shield-halved"></i>
+<div class="brand-title">FORENSIX AI</div>
+<div class="subtitle">AI Image Forensics Security</div>
+</div>
+
+<h2>Welcome Back</h2>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<p style="color:red;">{{ messages[0] }}</p>
+{% endif %}
+{% endwith %}
+
+<form method="POST">
+
+<div class="input-group">
+<i class="fa fa-envelope icon"></i>
+<input type="email" name="email" placeholder="Email" required>
+</div>
+
+<div class="input-group">
+<i class="fa fa-lock icon"></i>
+<input type="password" name="password" id="password" placeholder="Password" required>
+<span class="toggle-password" onclick="togglePassword()">
+<i class="fa fa-eye" id="eyeicon"></i>
+</span>
+</div>
+
+<button class="login-btn">Login</button>
+
+</form>
+
+<div class="bottom-text">
+Don't have an account? <a href="/register">Sign Up</a>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

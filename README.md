@@ -1,23 +1,23 @@
-# Hybrid Deep Learning Multimodal Model for Image Forensics
+﻿# Hybrid Deep Learning and Multimodal Forensic Feature Fusion for Detecting Real, AI-Generated, and Digitally Manipulated Images
 
-### Detecting Real, AI-Generated and Digitally Manipulated Images using Deep Learning
+**FORENSIX AI** is an AI-powered image forensics application developed as an MCA academic project.
 
 **Project Type:** MCA Academic Project  
-**Primary Focus:** Image Forensics | Deep Learning | CNN | Flask
+**Primary Focus:** Deep Learning | Image Forensics | CNN | Flask Web Application
 
 ---
 
 ## About the Project
 
-The rapid growth of generative AI and digital image editing has made it increasingly difficult to distinguish authentic images from artificially generated or manipulated ones.
+The rapid growth of generative AI and digital image editing has made it increasingly difficult to distinguish authentic images from artificially generated or digitally manipulated ones.
 
-This project explores a deep learning-based approach to image forensics using a Convolutional Neural Network (CNN).
+FORENSIX AI explores a deep learning-based approach to image forensics using a Convolutional Neural Network (CNN).
 
-The primary system classifies images into three categories:
+The primary image classification system identifies three categories:
 
-- **Real**
-- **AI-Generated**
-- **Manipulated**
+- **Real:** Images classified as authentic.
+- **AI-Generated:** Images classified as AI-generated.
+- **Manipulated:** Images classified as digitally altered.
 
 The trained model is integrated into a Flask-based web application that provides an interactive interface for image prediction and result visualization.
 
@@ -32,15 +32,13 @@ The trained model is integrated into a Flask-based web application that provides
 - SQLite database integration.
 - Experimental video deepfake detection prototype.
 
-## Application Screenshots
+## Application Preview
 
-Screenshots of the application will be added here.
+Application screenshots will be added here.
 
 ## Live Demonstration
 
 **Live Demo:** Coming soon.
-
-The live demonstration will allow visitors to explore the image detection application directly through their web browser, without installing the project locally.
 
 ## Technologies Used
 
@@ -48,7 +46,7 @@ The live demonstration will allow visitors to explore the image detection applic
 |---|---|
 | Programming Language | Python |
 | Deep Learning | TensorFlow, Keras |
-| Model Architecture | CNN |
+| Image Classification | Convolutional Neural Network |
 | Web Framework | Flask |
 | Image Processing | OpenCV, Pillow |
 | Frontend | HTML, CSS, JavaScript |
@@ -56,37 +54,64 @@ The live demonstration will allow visitors to explore the image detection applic
 | Data Analysis | NumPy, Matplotlib, Scikit-learn |
 | Experimental Video Module | PyTorch |
 
-## Dataset and Evaluation
+## Model Training Results
 
-The image classification model uses three categories:
+### Accuracy Plot
 
-| Category | Test Images |
-|---|---:|
-| Real | 40 |
-| AI-Generated | 40 |
-| Manipulated | 40 |
-| **Total** | **120** |
+![Model Accuracy](models/accuracy_plot.png)
 
-Training, validation and test datasets were maintained as separate splits.
+### Loss Plot
 
-Detailed evaluation results and visualizations will be added after verification.
+![Model Loss](models/loss_plot.png)
+
+These plots illustrate training and validation progress. They do not independently establish performance on external images.
+
+## Model Evaluation
+
+The image classification model was evaluated using a held-out test dataset containing **120 images**, with 40 images per class.
+
+### Test Accuracy
+
+**95.83% (approximately 96%)**
+
+The model correctly classified 115 out of 120 test images.
+
+### Classification Report
+
+| Class | Precision | Recall | F1-score | Test Images |
+|---|---:|---:|---:|---:|
+| AI-Generated | 0.97 | 0.93 | 0.95 | 40 |
+| Manipulated | 0.93 | 0.95 | 0.94 | 40 |
+| Real | 0.98 | 1.00 | 0.99 | 40 |
+
+### Confusion Matrix
+
+![Confusion Matrix](evaluation/confusion_matrix.png)
+
+Detailed metrics are available in `evaluation/classification_report.txt`.
+
+**Evaluation note:** These results describe performance on the project's held-out test dataset. They do not establish equivalent accuracy on arbitrary external images or images from different sources and distributions. External-image generalisation has not been independently validated.
+
+The trained model weights and original dataset are not included in this public repository.
 
 ## Experimental Video Detection
 
-The project also includes an experimental video deepfake detection prototype involving frame extraction and temporal deep learning techniques.
+The project also contains an experimental video deepfake detection prototype involving frame extraction and deep learning techniques.
 
-**Note:** Video detection is experimental and has not yet been validated for reliable performance. The primary focus of this project remains image detection.
+**Important:** Video detection is experimental and has not been validated for reliable performance. It is not part of the verified image classification results. The primary focus remains image forensics.
 
 ## Project Limitations
 
-- Image classification has been evaluated on the project's dataset.
-- Performance on arbitrary external images has not been established.
+- Image classification performance is reported on the project's held-out test dataset.
+- Generalisation to arbitrary external images has not been independently established.
 - Predictions should not be treated as definitive proof of image authenticity.
-- Video detection remains experimental.
+- Video detection remains experimental and unvalidated.
+- Model performance may vary depending on input image characteristics and data distribution.
 
 ## Project Purpose
 
-This project demonstrates the practical application of deep learning, image classification, image forensics and web application development to explore digital image authenticity.
+This project demonstrates the practical application of deep learning, image classification, digital image forensics and web application development to explore digital image authenticity.
 
 ---
-**Exploring digital image authenticity through deep learning and image forensics.**
+
+**Developed as part of an MCA academic project.**

@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% block title %}AI Analytics Dashboard{% endblock %}
+
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<h1>AI Forensic Analytics Dashboard</h1>
+
+<!-- ================= SUMMARY CARDS ================= -->
+
+<div class="summary-container">
+
+    <div class="summary-card">
+        <p>Total Cases</p>
+        <h2>{{ total_cases }}</h2>
+    </div>
+
+    <div class="summary-card">
+        <p>High Risk</p>
+        <h2>{{ high_risk }}</h2>
+    </div>
+
+    <div class="summary-card">
+        <p>Medium Risk</p>
+        <h2>{{ medium_risk }}</h2>
+    </div>
+
+    <div class="summary-card">
+        <p>Low Risk</p>
+        <h2>{{ low_risk }}</h2>
+    </div>
+
+    <div class="summary-card">
+        <p>Avg Confidence</p>
+        <h2>{{ avg_confidence }}%</h2>
+    </div>
+
+</div>
+
+<hr>
+
+<!-- ================= INSIGHT PANEL ================= -->
+
+<div class="insight-box">
+    <h3>System Insight</h3>
+
+    <p>
+        Most Detected Category:
+        <strong>
+            {% if ai_count > real_count and ai_count > manipulated_count %}
+                AI-Generated
+            {% elif manipulated_count > real_count %}
+                Manipulated
+            {% else %}
+                Real
+            {% endif %}
+        </strong>
+    </p>
+
+    <p>
+        Overall System Risk:
+        <strong>
+            {% if high_risk > medium_risk and high_risk > low_risk %}
+                HIGH
+            {% elif medium_risk > low_risk %}
+                MODERATE
+            {% else %}
+                STABLE
+            {% endif %}
+        </strong>
+    </p>
+</div>
+
+<hr>
+
+<!-- ================= CHARTS GRID ================= -->
+
+<div class="charts-grid">
+
+    <!-- Pie Chart -->
+    <div class="chart-box">
+        <h3>Prediction Distribution</h3>
+        <canvas id="predictionChart"></canvas>
+    </div>
+
+    <!-- Bar Chart -->
+    <div class="chart-box">
+        <h3>Risk Level Distribution</h3>
+        <canvas id="riskChart"></canvas>
+    </div>
+
+</div>
+
+<!-- Line Chart Full Width -->
+<div class="chart-box full-width">
+    <h3>Cases Over Time</h3>
+    <canvas id="timelineChart"></canvas>
+</div>
+
+
+<script>
+
+// Pie Chart
+new Chart(document.getElementById('predictionChart'), {
+    type: 'pie',
+    data: {
+        labels: ['Real', 'AI-Generated', 'Manipulated'],
+        datasets: [{
+            data: [{{ real_count }}, {{ ai_count }}, {{ manipulated_count }}],
+            backgroundColor: ['#00ff99', '#ff4d4d', '#ffa500']
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+// Bar Chart
+new Chart(document.getElementById('riskChart'), {
+    type: 'bar',
+    data: {
+        labels: ['High', 'Medium', 'Low'],
+        datasets: [{
+            label: 'Risk Distribution',
+            data: [{{ high_risk }}, {{ medium_risk }}, {{ low_risk }}],
+            backgroundColor: ['#ff4d4d', '#ffa500', '#00ff99']
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+// Line Chart
+new Chart(document.getElementById('timelineChart'), {
+    type: 'line',
+    data: {
+        labels: {{ dates|safe }},
+        datasets: [{
+            label: 'Cases Per Day',
+            data: {{ counts|safe }},
+            borderColor: '#00bfff',
+            fill: false,
+            tension: 0.3
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+</script>
+
+{% endblock %}

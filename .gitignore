@@ -1,0 +1,35 @@
+﻿# Datasets and extracted video frames
+dataset/
+videoExt/data/
+videoExt/frames/
+
+
+# Trained model weights and checkpoints
+*.h5
+*.pth
+*.keras
+
+# Uploaded images and videos
+forensic_web_app/static/uploads/
+
+# Local databases and prediction history
+forensic_web_app/forensic.db
+forensic_web_app/history.json
+
+# Logs
+*.log
+log.txt
+
+# Python temporary files
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# Environment secrets
+.env

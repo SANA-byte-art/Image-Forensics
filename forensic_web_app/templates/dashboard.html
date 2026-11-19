@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<h1>Image Forensic Analysis</h1>
+
+<div class="card-container">
+
+    <!-- Upload Card -->
+    <div class="card">
+        <h2>Upload Image</h2>
+
+        <!-- File Input -->
+        <input type="file" id="imageInput" accept="image/*" onchange="previewImage(event)">
+
+        <!-- Image Preview -->
+        <div class="image-preview-container" id="previewContainer" style="display:none;">
+            <img id="imagePreview">
+        </div>
+
+        <button onclick="predictImage()">Analyze</button>
+    </div>
+
+    <!-- Result Card -->
+    <div class="card" id="resultBox" style="display:none;">
+
+        <h2 id="predictionLabel"></h2>
+
+        <!-- Circular Confidence -->
+        <div class="confidence-wrapper">
+            <div class="circular-progress" id="progressBar">
+                <span class="progress-value" id="progressValue">0%</span>
+            </div>
+        </div>
+
+        <p id="analysisStatus" class="analysis-status"></p>
+
+        <div id="riskLevel" class="risk-badge"></div>
+        
+        <p id="explanationText" class="explanation"></p>
+
+        <div id="top3"></div>
+
+        <p id="caseIdText" class="case-id"></p>
+
+    </div>
+
+    <!-- 🔥 NEW: Model Logs Card -->
+    <div class="card">
+        <h2>Model Logs</h2>
+        <p>View all stored AI prediction records and forensic logs.</p>
+
+        <a href="/model_logs">
+            <button>Open Model Logs</button>
+        </a>
+    </div>
+
+</div>
+
+<script src="/static/script.js"></script>
+
+{% endblock %}

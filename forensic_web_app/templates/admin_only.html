@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Access Restricted{% endblock %}
+
+{% block content %}
+
+<div class="admin-warning">
+
+<h2>🔒 Admin Access Only</h2>
+
+<p>
+This section is restricted to system administrators.
+Please contact the administrator if you require access.
+</p>
+
+<a href="/dashboard" class="report-btn">Return to Dashboard</a>
+
+</div>
+
+<style>
+
+.admin-warning{
+    text-align:center;
+    margin-top:120px;
+}
+
+.admin-warning h2{
+    color:red;
+    font-size:32px;
+}
+
+.admin-warning p{
+    font-size:18px;
+    margin-top:15px;
+}
+
+</style>
+
+{% endblock %}

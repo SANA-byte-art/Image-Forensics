@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Login Required{% endblock %}
+
+{% block content %}
+
+<div class="login-warning">
+
+<h2>🔒 Login Required</h2>
+
+<p>
+You must login or register to access the Image Detection system.
+</p>
+
+<div style="margin-top:20px;">
+<a href="/login" class="report-btn">Login</a>
+<a href="/register" class="report-btn">Register</a>
+</div>
+
+</div>
+
+<style>
+
+.login-warning{
+    text-align:center;
+    margin-top:120px;
+}
+
+.login-warning h2{
+    color:#ff4c4c;
+    font-size:32px;
+}
+
+.login-warning p{
+    font-size:18px;
+    margin-top:10px;
+}
+
+</style>
+
+{% endblock %}

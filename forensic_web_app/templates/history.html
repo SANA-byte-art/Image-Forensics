@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Case History{% endblock %}
+
+{% block content %}
+
+<h1>Prediction History</h1>
+
+<!-- ================= FILTER SECTION ================= -->
+
+<form method="GET" action="/history" class="filter-form">
+
+    <!-- 🔎 Search by filename -->
+    <input type="text"
+           name="search"
+           placeholder="Search filename..."
+           value="{{ search }}">
+
+    <!-- 📅 Date Filter -->
+    <input type="date"
+           name="date"
+           value="{{ selected_date }}">
+
+    <!-- 🎯 Result Filter -->
+    <select name="result">
+        <option value="">All Results</option>
+
+        <option value="AI-Generated"
+            {% if selected_result == "AI-Generated" %}selected{% endif %}>
+            AI-Generated
+        </option>
+
+        <option value="Real"
+            {% if selected_result == "Real" %}selected{% endif %}>
+            Real
+        </option>
+
+        <option value="Manipulated"
+            {% if selected_result == "Manipulated" %}selected{% endif %}>
+            Manipulated
+        </option>
+    </select>
+
+    <!-- ⚠ Risk Filter -->
+    <select name="risk">
+        <option value="">All Risk</option>
+
+        <option value="HIGH"
+            {% if selected_risk == "HIGH" %}selected{% endif %}>
+            HIGH
+        </option>
+
+        <option value="MEDIUM"
+            {% if selected_risk == "MEDIUM" %}selected{% endif %}>
+            MEDIUM
+        </option>
+
+        <option value="LOW"
+            {% if selected_risk == "LOW" %}selected{% endif %}>
+            LOW
+        </option>
+    </select>
+
+    <button type="submit" class="filter-btn">Filter</button>
+
+    <a href="/history" class="clear-btn">Clear</a>
+
+</form>
+
+<!-- ================= TABLE SECTION ================= -->
+
+<div class="history-wrapper">
+
+    <table class="history-table">
+        <thead>
+            <tr>
+                <th>SL</th>
+                <th>Case ID</th>
+                <th>Image</th>
+                <th>Result</th>
+                <th>Risk</th>
+                <th>Confidence</th>
+                <th>Timestamp</th>
+                <th>Report</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for case in history %}
+            <tr>
+                <td>{{ case.serial }}</td>
+                <td>{{ case.case_id }}</td>
+                <td>{{ case.image }}</td>
+                <td>{{ case.result }}</td>
+                <td>{{ case.risk }}</td>
+                <td>{{ case.confidence }}</td>
+                <td>{{ case.timestamp }}</td>
+                <td>
+                    <a href="/report/{{ case.case_id }}" class="report-btn">
+                        View
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+            {% if history|length == 0 %}
+            <tr>
+                <td colspan="8" style="text-align:center; padding:20px;">
+                    No records found.
+                </td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

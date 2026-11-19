@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>About - FORENSIX</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<!-- AI BACKGROUND -->
+<canvas id="ai-bg"></canvas>
+
+
+<!-- NAVBAR -->
+<nav class="navbar">
+<div class="logo">FORENSIX</div>
+
+<div class="nav-links">
+<a href="/">Home</a>
+<a href="/dashboard">Image Detection</a>
+<a href="/about">About</a>
+<a href="/login">Login</a>
+</div>
+</nav>
+
+
+<!-- HERO -->
+<div class="hero">
+
+<h1 class="glow-title">FORENSIX AI</h1>
+<p>Advanced Image Forensics Detection System</p>
+
+</div>
+
+
+
+<!-- PROJECT DESCRIPTION -->
+
+<div class="content-card">
+
+<h2>Project Overview</h2>
+
+<p>
+FORENSIX is a deep learning based image forensic system developed as a
+Postgraduate research project. The system detects whether an image is
+AI-generated, manipulated, or authentic using Convolutional Neural Networks.
+</p>
+
+<p>
+The platform integrates machine learning, digital forensics principles,
+and modern web technologies to provide real-time image authenticity
+verification with confidence scoring.
+</p>
+
+<p>
+The system is implemented using Flask for the backend,
+TensorFlow/Keras for model inference, and a modern dark UI
+for visualization and analytics.
+</p>
+
+</div>
+
+
+
+<!-- TECHNICAL ARCHITECTURE -->
+
+<section class="architecture">
+
+<h2>Technical Architecture</h2>
+
+<div class="arch-grid">
+
+<div class="arch-card">
+<i class="fa-solid fa-brain"></i>
+<h3>CNN Architecture</h3>
+<p>
+3-layer convolutional neural network with filters
+(32 → 64 → 128) with pooling and dropout.
+</p>
+</div>
+
+<div class="arch-card">
+<i class="fa-solid fa-layer-group"></i>
+<h3>Feature Fusion</h3>
+<p>
+Hybrid feature extraction combining spatial and
+frequency domain forensic signals.
+</p>
+</div>
+
+<div class="arch-card">
+<i class="fa-solid fa-database"></i>
+<h3>Dataset</h3>
+<p>
+Dataset includes AI generated, manipulated,
+and real images for robust training.
+</p>
+</div>
+
+<div class="arch-card">
+<i class="fa-solid fa-bullseye"></i>
+<h3>Classification</h3>
+<p>
+Softmax output providing 3-class prediction
+with confidence probabilities.
+</p>
+</div>
+
+<div class="arch-card">
+<i class="fa-solid fa-code-branch"></i>
+<h3>Framework</h3>
+<p>
+Built using TensorFlow / Keras with Adam optimizer
+and categorical cross-entropy loss.
+</p>
+</div>
+
+<div class="arch-card">
+<i class="fa-solid fa-bolt"></i>
+<h3>Performance</h3>
+<p>
+Model achieves ~96% accuracy with
+real-time inference capability.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- CNN MODEL ARCHITECTURE -->
+
+<section class="cnn-arch">
+
+<h2>CNN Model Architecture</h2>
+
+<div class="cnn-box">
+
+<pre>
+Input (224 x 224 x 3)
+↓
+Conv2D (32 filters, 3x3, ReLU)
+MaxPool (2x2)
+↓
+Conv2D (64 filters, 3x3, ReLU)
+MaxPool (2x2)
+↓
+Conv2D (128 filters, 3x3, ReLU)
+MaxPool (2x2)
+↓
+Flatten
+↓
+Dense (128, ReLU)
+Dropout (0.5)
+↓
+Dense (3, Softmax)
+
+Output:
+[ AI Generated | Manipulated | Real ]
+</pre>
+
+</div>
+
+</section>
+
+
+
+<!-- MODEL PERFORMANCE -->
+
+<section class="model-performance">
+
+<h2>Model Performance</h2>
+
+<div class="accuracy-box">
+
+<h3>Overall Detection Accuracy</h3>
+
+<div class="accuracy-bar">
+<div class="accuracy-fill"></div>
+</div>
+
+<p>96% Model Accuracy</p>
+
+</div>
+
+<canvas id="accuracyChart"></canvas>
+
+</section>
+
+
+
+<!-- SYSTEM WORKFLOW -->
+
+<section class="research-diagram">
+
+<h2>System Workflow</h2>
+
+<div class="diagram">
+
+Image Upload → Preprocessing → CNN Feature Extraction →  
+Classification Layer → Forensic Decision → Report Generation
+
+</div>
+
+</section>
+
+
+
+<script>
+
+/* AI BACKGROUND */
+
+const canvas=document.getElementById("ai-bg")
+const ctx=canvas.getContext("2d")
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let nodes=[]
+
+for(let i=0;i<60;i++){
+
+nodes.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+vx:(Math.random()-0.5)*0.7,
+vy:(Math.random()-0.5)*0.7
+
+})
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+nodes.forEach(n=>{
+
+n.x+=n.vx
+n.y+=n.vy
+
+ctx.beginPath()
+ctx.arc(n.x,n.y,2,0,Math.PI*2)
+ctx.fillStyle="#9b5cff"
+ctx.fill()
+
+nodes.forEach(m=>{
+
+let dist=Math.hypot(n.x-m.x,n.y-m.y)
+
+if(dist<120){
+
+ctx.beginPath()
+ctx.moveTo(n.x,n.y)
+ctx.lineTo(m.x,m.y)
+ctx.strokeStyle="rgba(155,92,255,0.15)"
+ctx.stroke()
+
+}
+
+})
+
+})
+
+requestAnimationFrame(draw)
+
+}
+
+draw()
+
+
+
+/* ACCURACY CHART */
+
+const ctx2=document.getElementById("accuracyChart")
+
+new Chart(ctx2,{
+
+type:"bar",
+
+data:{
+labels:["Training","Validation","Test"],
+datasets:[{
+data:[97,95,95],
+backgroundColor:"#7a3cff"
+}]
+},
+
+options:{
+plugins:{legend:{display:false}},
+scales:{y:{beginAtZero:true,max:100}}
+}
+
+})
+
+</script>
+
+</body>
+</html>
